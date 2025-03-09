@@ -13,10 +13,11 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(name = "temp_register")
 public class TempRegisterEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="TR_id")
     private BigInteger ID;
 
@@ -45,13 +46,13 @@ public class TempRegisterEntity {
     private String status;
 
     @Column(name="TR_created_by",length = 256,nullable = false)
-    private LocalDateTime createdBy;
+    private String createdBy;
 
     @Column(name="TR_created_DTM",nullable = false)
     private LocalDateTime createdDTM;
 
     @Column(name="TR_updated_by",length = 256,nullable = false)
-    private LocalDateTime updatedBy;
+    private String updatedBy;
 
     @Column(name="TR_updated_DTM",nullable = false)
     private LocalDateTime updatedDTM;

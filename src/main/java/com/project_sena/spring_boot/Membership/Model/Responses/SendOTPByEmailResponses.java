@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RegisterByEmailResponses {
+public class SendOTPByEmailResponses {
     private LocalDateTime OTPExpr;
     private String OTPRef;
     private ErrorResponses errorResponses;

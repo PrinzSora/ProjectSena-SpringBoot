@@ -12,15 +12,16 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(name="user_profile")
 public class UserProfileEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="UP_id")
     private BigInteger Id;
 
-    @Column(name="UP_uiid")
-    private BigInteger UID;
+    @Column(name="UP_uiid",nullable = false)
+    private int UID;
 
     @Column(name="UP_username",length = 100,nullable = false)
     private String userName;
@@ -28,22 +29,19 @@ public class UserProfileEntity {
     @Column(name="UP_password",length = 256,nullable = false)
     private String userPassword;
 
-    @Column(length = 256,nullable = false)
-    private String userEmail;
-
-    @Column(length = 8,nullable = false)
+    @Column(name="UP_status",length = 8,nullable = false)
     private String status;
 
-    @Column(length = 256,nullable = false)
-    private LocalDateTime createdBy;
+    @Column(name="UP_created_by",length = 256,nullable = false)
+    private String createdBy;
 
-    @Column(nullable = false)
+    @Column(name="UP_created_DTM",nullable = false)
     private LocalDateTime createdDTM;
 
-    @Column(length = 256,nullable = false)
-    private LocalDateTime updatedBy;
+    @Column(name="UP_updated_by",length = 256,nullable = false)
+    private String updatedBy;
 
-    @Column(nullable = false)
+    @Column(name="UP_updated_DTM",nullable = false)
     private LocalDateTime updatedDTM;
 
 }

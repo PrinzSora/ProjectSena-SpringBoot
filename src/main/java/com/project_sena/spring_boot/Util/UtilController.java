@@ -1,9 +1,6 @@
-package com.project_sena.spring_boot.UtilService;
+package com.project_sena.spring_boot.Util;
 
 
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,5 +37,12 @@ public class UtilController {
         }
         return response;
     }
+
+    @GetMapping("/send-email")
+    public String sendEmail() {
+        //utilService.sendSimpleEmail("recipient@example.com", "Test Subject", "Test Email Body");
+        return "Email sent successfully";
+    }
+
 
 }

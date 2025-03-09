@@ -1,4 +1,4 @@
-package com.project_sena.spring_boot.UtilService.Model;
+package com.project_sena.spring_boot.Util.Model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
