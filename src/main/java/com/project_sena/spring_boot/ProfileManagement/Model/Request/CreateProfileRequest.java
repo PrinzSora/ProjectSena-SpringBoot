@@ -1,4 +1,4 @@
-package com.project_sena.spring_boot.ProfileManagement.Model;
+package com.project_sena.spring_boot.ProfileManagement.Model.Request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
