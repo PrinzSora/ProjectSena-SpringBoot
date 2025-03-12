@@ -1,14 +1,15 @@
-package com.project_sena.spring_boot.Membership.Model.Responses;
+package com.project_sena.spring_boot.ProfileManagement.Model.Responses;
+
 
 import com.project_sena.spring_boot.Util.Model.ErrorResponses;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-public class LoginResponses {
-    private String userToken;
+public class SearchProfileResponses {
+
     private ErrorResponses errorResponses;
 }
