@@ -1,4 +1,4 @@
-package com.project_sena.spring_boot.Util;
+package com.project_sena.spring_boot.Util.Service;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;

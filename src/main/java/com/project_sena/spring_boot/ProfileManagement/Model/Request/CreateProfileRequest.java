@@ -23,8 +23,4 @@ public class CreateProfileRequest {
 
     private String status;
 
-    private LocalDateTime createdDTM;
-
-    private LocalDateTime updatedDTM;
-
 }

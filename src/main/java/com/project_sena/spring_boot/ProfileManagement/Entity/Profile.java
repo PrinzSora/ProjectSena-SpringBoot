@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class Profile {
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private BigInteger ID;
 
     @Column(name="PMP_UID",nullable = false)

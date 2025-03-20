@@ -5,9 +5,9 @@ import com.project_sena.spring_boot.Membership.Entity.UserProfileEntity;
 import com.project_sena.spring_boot.Membership.Model.Request.LoginRequest;
 import com.project_sena.spring_boot.Membership.Model.Responses.LoginResponses;
 import com.project_sena.spring_boot.Membership.Repository.UserProfileRepo;
-import com.project_sena.spring_boot.Util.JWTService;
+import com.project_sena.spring_boot.Util.Service.JWTService;
 import com.project_sena.spring_boot.Util.Model.JwtPayload;
-import com.project_sena.spring_boot.Util.UtilService;
+import com.project_sena.spring_boot.Util.Service.UtilService;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;

@@ -1,7 +1,6 @@
-package com.project_sena.spring_boot.Util;
+package com.project_sena.spring_boot.Util.Service;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;

@@ -1,4 +1,4 @@
-package com.project_sena.spring_boot.ProfileManagement.Constance;
+package com.project_sena.spring_boot.Util.Constance;
 
 public enum FriendStatus {
     PENDING,

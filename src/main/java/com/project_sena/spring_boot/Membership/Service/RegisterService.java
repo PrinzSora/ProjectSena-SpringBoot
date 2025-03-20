@@ -1,15 +1,15 @@
 package com.project_sena.spring_boot.Membership.Service;
 
-import com.project_sena.spring_boot.Membership.CostumException.DataAlreadyExistsException;
-import com.project_sena.spring_boot.Membership.CostumException.TimeExpiredException;
+import com.project_sena.spring_boot.Util.CostumException.DataAlreadyExistsException;
+import com.project_sena.spring_boot.Util.CostumException.TimeExpiredException;
 import com.project_sena.spring_boot.Membership.Entity.TempRegisterEntity;
 import com.project_sena.spring_boot.Membership.Entity.UserProfileEntity;
 import com.project_sena.spring_boot.Membership.Model.Request.RegisterByEmailRequest;
 import com.project_sena.spring_boot.Membership.Model.Responses.RegisterByEmailResponses;
 import com.project_sena.spring_boot.Membership.Repository.TempRegisterRepo;
 import com.project_sena.spring_boot.Membership.Repository.UserProfileRepo;
-import com.project_sena.spring_boot.Util.MailService;
-import com.project_sena.spring_boot.Util.UtilService;
+import com.project_sena.spring_boot.Util.Service.MailService;
+import com.project_sena.spring_boot.Util.Service.UtilService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

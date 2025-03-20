@@ -1,7 +1,6 @@
-package com.project_sena.spring_boot.Util;
+package com.project_sena.spring_boot.Util.Service;
 
 
-import com.auth0.jwt.HeaderParams;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
