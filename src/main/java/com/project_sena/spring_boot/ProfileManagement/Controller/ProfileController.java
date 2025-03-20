@@ -59,4 +59,19 @@ public class ProfileController {
         return  response;
     }
 
+    @GetMapping("/friend_request")
+    public ResponseEntity<ErrorResponses> FriendRequest(){
+        ResponseEntity<ErrorResponses> response;
+        ErrorResponses errorResponses = new ErrorResponses();
+        try{
+
+            errorResponses = null;
+            response = new ResponseEntity<>(errorResponses, HttpStatusCode.valueOf(200));
+        }catch(Exception e){
+            response = new ResponseEntity<>(null, HttpStatusCode.valueOf(500));
+        }
+        return response;
+    }
+
+
 }
