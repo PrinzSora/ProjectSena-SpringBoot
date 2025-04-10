@@ -10,12 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
-
 @Log4j2
-@Controller
+@RestController
 @RequestMapping("/util")
 public class UtilController {
     private static final Logger logger = LogManager.getLogger(UtilController.class);
@@ -32,7 +32,6 @@ public class UtilController {
         try{
             pokingList.add(utilService.FirstMethodInUtilService());
             response = new ResponseEntity<>(pokingList,HttpStatusCode.valueOf(200));
-            logger.info("ehe");
         }catch (Exception e){
             response = new ResponseEntity<>(null,HttpStatusCode.valueOf(500));
         }

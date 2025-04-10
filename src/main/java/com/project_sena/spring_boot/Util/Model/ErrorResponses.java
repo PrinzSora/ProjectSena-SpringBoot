@@ -12,3 +12,4 @@ public class ErrorResponses {
     private String messages;
     private String detail;
 }
+

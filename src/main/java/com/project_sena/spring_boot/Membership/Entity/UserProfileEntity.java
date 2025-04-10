@@ -16,12 +16,12 @@ import java.time.LocalDateTime;
 public class UserProfileEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="UP_id")
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @Column(name="UP_id",columnDefinition = "BIGINT")
     private BigInteger Id;
 
     @Column(name="UP_uiid",nullable = false)
-    private int UID;
+    private String UID;
 
     @Column(name="UP_username",length = 100,nullable = false)
     private String userName;

@@ -4,9 +4,11 @@ package com.project_sena.spring_boot.ProfileManagement.Controller;
 import com.project_sena.spring_boot.ProfileManagement.Model.Request.CreateProfileRequest;
 import com.project_sena.spring_boot.ProfileManagement.Model.Request.SearchProfileRequest;
 import com.project_sena.spring_boot.ProfileManagement.Model.Request.UpdateProfileRequest;
+import com.project_sena.spring_boot.ProfileManagement.Model.Responses.ProfileResponses;
 import com.project_sena.spring_boot.ProfileManagement.Model.Responses.SearchProfileResponses;
 import com.project_sena.spring_boot.ProfileManagement.Service.ProfileServices;
 import com.project_sena.spring_boot.Util.Model.ErrorResponses;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
-@Controller
-@RequestMapping(value="/profile")
+@RestController
+@RequestMapping(value="/profile-management/profile")
 public class ProfileController {
 
     private final ProfileServices profileServices;
@@ -23,6 +25,27 @@ public class ProfileController {
 
     public ProfileController(ProfileServices profileServices){
         this.profileServices = profileServices;
+    }
+
+    @GetMapping("/get_profile")
+    public ResponseEntity<ProfileResponses> GetProfile(){
+        ResponseEntity<ProfileResponses> response;
+        ProfileResponses result = new ProfileResponses();
+        ErrorResponses errorResponses = new ErrorResponses();
+
+        try{
+            result = profileServices.GetProfile();
+            errorResponses = null;
+            result.setErrorResponses(errorResponses);
+            response = new ResponseEntity<>(result , HttpStatusCode.valueOf(200));
+        }catch (Exception e){
+            errorResponses.setCode("5001");
+            errorResponses.setMessages(e.getMessage());
+            errorResponses.setDetail(e.getClass().getSimpleName());
+            result.setErrorResponses(errorResponses);
+            response = new ResponseEntity<>(result, HttpStatusCode.valueOf(500));
+        }
+        return response;
     }
 
     @PostMapping("/create_profile")
@@ -34,9 +57,11 @@ public class ProfileController {
             errorResponses = null;
             response = new ResponseEntity<>(errorResponses, HttpStatusCode.valueOf(200));
         }catch (Exception e){
-            response = new ResponseEntity<>(null, HttpStatusCode.valueOf(500));
+            errorResponses.setCode("5001");
+            errorResponses.setMessages(e.getMessage());
+            errorResponses.setDetail(e.getClass().getSimpleName());
+            response = new ResponseEntity<>(errorResponses, HttpStatusCode.valueOf(500));
         }
-
         return response;
     }
 
@@ -46,10 +71,28 @@ public class ProfileController {
         ErrorResponses errorResponses = new ErrorResponses();
         try{
             profileServices.UpdateProfile(request,timeStamp);
-            errorResponses = null;
             response = new ResponseEntity<>(errorResponses, HttpStatusCode.valueOf(200));
         }catch(Exception e){
-            response = new ResponseEntity<>(null, HttpStatusCode.valueOf(500));
+            errorResponses.setCode("5001");
+            errorResponses.setMessages(e.getLocalizedMessage());
+            errorResponses.setDetail(e.getMessage());
+            response = new ResponseEntity<>(errorResponses, HttpStatusCode.valueOf(500));
+        }
+        return response;
+    }
+
+    @DeleteMapping("/delete_profile")
+    public ResponseEntity<ErrorResponses> DeleteProfile(){
+        ResponseEntity<ErrorResponses> response;
+        ErrorResponses errorResponses = new ErrorResponses();
+        try{
+            profileServices.DeleteProfile();
+            response = new ResponseEntity<>(errorResponses, HttpStatusCode.valueOf(200));
+        }catch(Exception e){
+            errorResponses.setCode("5001");
+            errorResponses.setMessages(e.getLocalizedMessage());
+            errorResponses.setDetail(e.getMessage());
+            response = new ResponseEntity<>(errorResponses, HttpStatusCode.valueOf(500));
         }
         return response;
     }
@@ -63,7 +106,9 @@ public class ProfileController {
             profileServices.SearchProfile(request);
             response = new ResponseEntity<>(result, HttpStatusCode.valueOf(200));
         }catch(Exception e){
-            result.setErrorResponses(errorResponses);
+            errorResponses.setCode("5001");
+            errorResponses.setMessages(e.getLocalizedMessage());
+            errorResponses.setDetail(e.getMessage());
             response = new ResponseEntity<>(result, HttpStatusCode.valueOf(500));
         }
         return  response;

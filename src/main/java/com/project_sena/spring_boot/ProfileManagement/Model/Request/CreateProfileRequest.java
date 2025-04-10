@@ -21,6 +21,4 @@ public class CreateProfileRequest {
 
     private LocalDateTime birthDate;
 
-    private String status;
-
 }

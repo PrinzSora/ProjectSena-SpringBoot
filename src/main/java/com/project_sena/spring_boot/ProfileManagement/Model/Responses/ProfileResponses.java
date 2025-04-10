@@ -1,6 +1,7 @@
 package com.project_sena.spring_boot.ProfileManagement.Model.Responses;
 
-import jakarta.persistence.Column;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.project_sena.spring_boot.Util.Model.ErrorResponses;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,7 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Profile {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ProfileResponses {
 
     private int UID;
 
@@ -22,6 +24,6 @@ public class Profile {
 
     private String birthDate;
 
-    private String status;
+    private ErrorResponses errorResponses;
 
 }

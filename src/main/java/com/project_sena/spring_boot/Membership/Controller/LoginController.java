@@ -14,8 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping(value = "membership/login")
 public class LoginController {
     private static final Logger logger = LogManager.getLogger(LoginController.class);
@@ -29,15 +30,19 @@ public class LoginController {
     public ResponseEntity<LoginResponses> LoginWithEmail(@RequestBody LoginRequest request){
         ResponseEntity<LoginResponses> response;
         LoginResponses result = new LoginResponses();
+        ErrorResponses errorResponses = new ErrorResponses();
+
         try{
             result = loginService.LoginWithEmail(request);
+            errorResponses = null;
+            result.setErrorResponses(errorResponses);
             response = new ResponseEntity<>(result, HttpStatusCode.valueOf(200));
         }catch (Exception e){
-            ErrorResponses errorResponses = new ErrorResponses();
             errorResponses.setCode("5001");
             errorResponses.setDetail(e.getMessage());
             errorResponses.setMessages(e.getClass().getSimpleName());
-            response = new ResponseEntity<>(null,HttpStatusCode.valueOf(500));
+            result.setErrorResponses(errorResponses);
+            response = new ResponseEntity<>(result,HttpStatusCode.valueOf(500));
         }
         return response;
     }

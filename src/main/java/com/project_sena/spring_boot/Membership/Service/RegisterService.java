@@ -17,6 +17,7 @@ import javax.security.auth.login.AccountNotFoundException;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class RegisterService {
@@ -99,7 +100,7 @@ public class RegisterService {
 
     private UserProfileEntity createNewUserProfile(TempRegisterEntity tempRegister,LocalDateTime timeStamp) throws Exception{
         UserProfileEntity result = new UserProfileEntity();
-        result.setUID(12345);
+        result.setUID(UUID.randomUUID().toString());
         result.setUserName(tempRegister.getUserName());
         result.setUserPassword(tempRegister.getUserPassword());
         result.setStatus("ACTIVE");

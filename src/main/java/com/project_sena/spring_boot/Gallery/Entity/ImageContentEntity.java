@@ -13,23 +13,45 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table()
+@Table(name = "image_content")
 public class ImageContentEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @Column(name="IC_id",columnDefinition = "BIGINT")
     private BigInteger ID;
-    private int UIID;
+
+    @Column(name="IC_uid",nullable = false)
+    private int UID;
+
+    @Column(name="IC_groupId")
     private String groupID;
+
+    @Column(name="IC_displayName",nullable = false)
     private String displayName;
+
+    @Column(name="IC_upload-status",nullable = false)
     private UploadStatus uploadStatus;
-    private byte size;
+
+    @Column(name="IC_size")
+    private long size;
+
+    @Column(name="IC_check-sum")
     private int checkSum;
+
+    @Column(name="IC_current-chunk")
     private int currentChunk;
+
+    @Column(name="IC_total-chuck")
     private int totalChunk;
+
+    @Column(name="IC_completed-upload_DTM")
     private LocalDateTime completedUploadDTM;
 
+    @Column(name="IC_created_DTM")
     private LocalDateTime createdDTM;
+
+    @Column(name="IC_update_DTM")
     private LocalDateTime updatedDTM;
 
 }

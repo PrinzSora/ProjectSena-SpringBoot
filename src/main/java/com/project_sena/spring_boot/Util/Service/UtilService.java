@@ -7,6 +7,7 @@ import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.UUID;
 
 @Service
 public class UtilService {
@@ -54,6 +55,7 @@ public class UtilService {
         return stringBuilder.toString();
     }
 
+
     public boolean IsEmailFormatCorrect(String email){
         boolean result = false;
         String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\\\.[A-Za-z]{2,}$";
@@ -85,5 +87,6 @@ public class UtilService {
     public long ConvertLocalDateTimeToUnixTime(LocalDateTime localDateTime){
         return localDateTime.toEpochSecond(ZoneOffset.UTC);
     }
+
 
 }

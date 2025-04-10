@@ -7,15 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@Controller
-@RequestMapping(value="friend-list")
+@RestController
+@RequestMapping(value="/profile-management/friend_list")
 public class FriendListController {
 
-
-    @GetMapping("/friend_list")
-    public ResponseEntity<ErrorResponses> FriendList(){
+    @GetMapping("/get_friend_list")
+    public ResponseEntity<ErrorResponses> GetFriendList(){
         ResponseEntity<ErrorResponses> response;
         ErrorResponses errorResponses = new ErrorResponses();
         try{
@@ -26,7 +26,6 @@ public class FriendListController {
         }
         return response;
     }
-
 
     @GetMapping("/friend_request")
     public ResponseEntity<ErrorResponses> FriendRequest(){
@@ -53,7 +52,5 @@ public class FriendListController {
         }
         return response;
     }
-
-
 
 }

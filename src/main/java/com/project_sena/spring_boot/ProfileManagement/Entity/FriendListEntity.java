@@ -14,10 +14,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-public class FriendList {
+public class FriendListEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @Column(name="PHF_id",columnDefinition = "BIGINT")
     private BigInteger ID;
 
     @Column(name="PHF_user_uid",nullable = false)
@@ -29,6 +30,10 @@ public class FriendList {
     @Enumerated(EnumType.STRING)
     @Column(name="PHF_status" ,nullable = false)
     private FriendStatus status;
+
+    @ManyToOne
+    @JoinColumn(name="profile_UID",referencedColumnName = "PMP_uid" ,nullable = false)
+    private ProfileEntity profileEntity;
 
     @Column(name="PHF_created_DTM" ,nullable = false)
     private LocalDateTime createdDTM;

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 
 
-@Controller
+@RestController
 @RequestMapping(value = "membership/register")
 public class RegisterController {
     private static final Logger logger = LogManager.getLogger(RegisterController.class);
@@ -48,8 +48,8 @@ public class RegisterController {
         return response;
     }
 
-    @GetMapping("/send_otp_email/{email}")
-    public ResponseEntity<SendOTPByEmailResponses> SendOTPByEmail(){
+    @GetMapping("/send_otp_email/")
+    public ResponseEntity<SendOTPByEmailResponses> SendOTPByEmail(@RequestParam String email){
         ResponseEntity<SendOTPByEmailResponses> response;
         SendOTPByEmailResponses result = new SendOTPByEmailResponses();
         try{
@@ -65,8 +65,8 @@ public class RegisterController {
         return response;
     }
 
-    @GetMapping("/verify_otp/{otp}/{email}")
-    public ResponseEntity<ErrorResponses> VerifyOTP(@PathVariable("otp") String otp,@PathVariable("email") String email){
+    @GetMapping("/verify_otp/")
+    public ResponseEntity<ErrorResponses> VerifyOTP(@RequestParam String otp,@RequestParam String email){
         ResponseEntity<ErrorResponses> response;
         ErrorResponses errorResponses = new ErrorResponses();
         try{
