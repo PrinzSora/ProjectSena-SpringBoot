@@ -45,7 +45,7 @@ public class ProfileEntity {
     @Enumerated(EnumType.STRING)
     private ProfileStatus status;
 
-    @OneToMany(mappedBy = "profileEntity",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userUID",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<FriendListEntity> friendListEntity;
 
     @Column(name="PMP_created_DTM",nullable = false)

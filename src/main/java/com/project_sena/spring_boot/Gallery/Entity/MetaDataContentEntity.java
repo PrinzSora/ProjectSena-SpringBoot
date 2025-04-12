@@ -9,49 +9,48 @@ import lombok.Setter;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
-@Table(name = "image_content")
-public class ImageContentEntity {
+@Table(name="meta-data-content")
+public class MetaDataContentEntity {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    @Column(name="IC_id",columnDefinition = "BIGINT")
+    @Column(name="id",columnDefinition = "BIGINT")
     private BigInteger ID;
 
-    @Column(name="IC_uid",nullable = false)
+    @Column(name="uid",nullable = false)
     private int UID;
 
-    @Column(name="IC_groupId")
+    @Column(name="groupId")
     private String groupID;
 
-    @Column(name="IC_displayName",nullable = false)
+    @Column(name="displayName",nullable = false)
     private String displayName;
 
-    @Column(name="IC_upload-status",nullable = false)
+    @Column(name="upload-status",nullable = false)
     private UploadStatus uploadStatus;
 
-    @Column(name="IC_size")
+    @Column(name="size")
     private long size;
 
-    @Column(name="IC_check-sum")
+    @Column(name="check-sum")
     private int checkSum;
 
-    @Column(name="IC_current-chunk")
+    @Column(name="current-chunk")
     private int currentChunk;
 
-    @Column(name="IC_total-chuck")
+    @Column(name="total-chuck")
     private int totalChunk;
 
-    @Column(name="IC_completed-upload_DTM")
+    @Column(name="completed-upload_DTM")
     private LocalDateTime completedUploadDTM;
 
-    @Column(name="IC_created_DTM")
+    @Column(name="created_DTM")
     private LocalDateTime createdDTM;
 
-    @Column(name="IC_update_DTM")
+    @Column(name="update_DTM")
     private LocalDateTime updatedDTM;
-
 }

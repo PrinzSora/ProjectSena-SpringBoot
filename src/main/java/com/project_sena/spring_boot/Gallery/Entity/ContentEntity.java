@@ -21,8 +21,8 @@ import java.util.List;
 public class ContentEntity {
     @Id
     private BigInteger id;
-    private BigInteger image_id;
-    private String image_url;
+    private int content_uid;
+    private String content_url;
     private String caption;
     @ElementCollection
     private List<String> genre;

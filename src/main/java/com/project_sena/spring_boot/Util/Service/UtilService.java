@@ -1,12 +1,16 @@
 package com.project_sena.spring_boot.Util.Service;
 
 
+import com.project_sena.spring_boot.Gallery.Service.ImageContentService;
+import com.project_sena.spring_boot.Gallery.Service.ModelContentService;
+import com.project_sena.spring_boot.Gallery.Service.VdoContentService;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -88,5 +92,35 @@ public class UtilService {
         return localDateTime.toEpochSecond(ZoneOffset.UTC);
     }
 
+    public <E extends Enum<E>> E isEnumValue(String value,Class<E> enumClass) throws Exception{
+        E result = null;
+        for(E eNumConstance:enumClass.getEnumConstants()){
+            if(Objects.equals(eNumConstance.toString(),value)){
+                result = eNumConstance;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public String convertMediaTypeInHTTPHeader(String mediaType){
+        String result;
+        mediaType = mediaType.split("/")[0].toLowerCase();
+        switch (mediaType){
+            case "image":
+                result = ImageContentService.class.getSimpleName();
+                break;
+            case "video":
+                result = VdoContentService.class.getSimpleName();
+                break;
+            case "model":
+                result = ModelContentService.class.getSimpleName();
+                break;
+            default:
+                result = "";
+                break;
+        }
+        return  result;
+    }
 
 }

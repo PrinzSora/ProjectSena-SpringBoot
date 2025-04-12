@@ -7,6 +7,7 @@ import com.project_sena.spring_boot.ProfileManagement.Model.Request.UpdateProfil
 import com.project_sena.spring_boot.ProfileManagement.Model.Responses.ProfileResponses;
 import com.project_sena.spring_boot.ProfileManagement.Model.Responses.SearchProfileResponses;
 import com.project_sena.spring_boot.ProfileManagement.Repository.ProfileRepo;
+import com.project_sena.spring_boot.Util.Constance.Gender;
 import com.project_sena.spring_boot.Util.Constance.ProfileStatus;
 import com.project_sena.spring_boot.Util.Service.ThreadLocalService;
 import com.project_sena.spring_boot.Util.Service.UtilService;
@@ -58,6 +59,7 @@ public class ProfileServices {
         return result;
     }
 
+
     @Transactional
      public void CreateProfile(CreateProfileRequest request,LocalDateTime timeStamp)throws Exception{
         ProfileEntity result = new ProfileEntity();
@@ -75,18 +77,33 @@ public class ProfileServices {
 
     @Transactional
     public void UpdateProfile(UpdateProfileRequest request,LocalDateTime timeStamp)throws  Exception{
-        ProfileEntity result = new ProfileEntity();
-        result.setBio(request.getBio());
-        result.setGender(request.getGender());
-        result.setLocation(request.getLocation());
-        result.setUpdatedDTM(timeStamp);
-        profileRepo.save(result);
+        Optional<ProfileEntity> result;
+        result = profileRepo.getProfile(threadLocalService.getData().get("UID").toString());
+        if(result.isEmpty()){
+            throw new AccountNotFoundException();
+        }
+        if (request.getBio() != null && !request.getBio().isEmpty()) {
+            result.get().setBio(request.getBio());
+        }
+        if (request.getGender() != null && !request.getGender().isEmpty()) {
+            result.get().setGender(request.getGender());
+        }
+        if (request.getLocation() != null && !request.getLocation().isEmpty()) {
+            result.get().setLocation(request.getLocation());
+        }
+        result.get().setUpdatedDTM(timeStamp);
+        profileRepo.save(result.get());
     }
 
+    //todo add more search option
     public SearchProfileResponses SearchProfile(SearchProfileRequest request)throws Exception{
         SearchProfileResponses result = new SearchProfileResponses();
         result.setProfilesList(null);
         return result;
+    }
+
+    public boolean isProfileExist(int UID) throws Exception {
+        return profileRepo.existsByUID(UID);
     }
 
     public void DeleteProfile()throws Exception{

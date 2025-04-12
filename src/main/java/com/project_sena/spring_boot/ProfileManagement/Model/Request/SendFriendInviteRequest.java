@@ -4,15 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @NoArgsConstructor
 @Getter
 @Setter
-public class SearchProfileRequest {
-
-    private String UID;
-    private String penName;
-    private List<String> location;
-
+public class SendFriendInviteRequest {
+    String friendUID;
 }

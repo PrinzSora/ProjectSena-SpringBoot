@@ -31,10 +31,6 @@ public class FriendListEntity {
     @Column(name="PHF_status" ,nullable = false)
     private FriendStatus status;
 
-    @ManyToOne
-    @JoinColumn(name="profile_UID",referencedColumnName = "PMP_uid" ,nullable = false)
-    private ProfileEntity profileEntity;
-
     @Column(name="PHF_created_DTM" ,nullable = false)
     private LocalDateTime createdDTM;
 

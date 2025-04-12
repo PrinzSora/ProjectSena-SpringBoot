@@ -39,7 +39,7 @@ public class JWTService {
                 //.withAudience("")
                 //.withKeyId("")
                 .withSubject(jwtPayload.getUID())
-                .withExpiresAt(Date.valueOf(LocalDateTime.now(ZoneOffset.UTC).plusDays(1).toLocalDate()))
+                .withExpiresAt(Date.valueOf(LocalDateTime.now(ZoneOffset.UTC).plusDays(7).toLocalDate()))
                 .sign(Algorithm.HMAC256(secretKey));
         return jwt;
     }

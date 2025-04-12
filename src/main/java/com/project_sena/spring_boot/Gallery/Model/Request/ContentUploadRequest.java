@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 public class ContentUploadRequest {
 
     private String displayName;
+    private String fileFormat;
     private byte size;
     private int checkSum;
     private int currentChunk;
