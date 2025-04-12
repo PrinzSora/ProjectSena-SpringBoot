@@ -8,6 +8,7 @@ import com.project_sena.spring_boot.ProfileManagement.Model.Responses.ProfileRes
 import com.project_sena.spring_boot.ProfileManagement.Model.Responses.SearchProfileResponses;
 import com.project_sena.spring_boot.ProfileManagement.Service.ProfileServices;
 import com.project_sena.spring_boot.Util.Model.ErrorResponses;
+import com.project_sena.spring_boot.Util.Service.ThreadLocalService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +23,11 @@ public class ProfileController {
 
     private final ProfileServices profileServices;
     private final LocalDateTime timeStamp = LocalDateTime.now();
+    private final ThreadLocalService threadLocalService;
 
-    public ProfileController(ProfileServices profileServices){
+    public ProfileController(ProfileServices profileServices, ThreadLocalService threadLocalService){
         this.profileServices = profileServices;
+        this.threadLocalService = threadLocalService;
     }
 
     @GetMapping("/get_profile")
