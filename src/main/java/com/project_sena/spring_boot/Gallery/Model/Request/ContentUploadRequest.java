@@ -15,13 +15,9 @@ public class ContentUploadRequest {
 
     private String displayName;
     private String fileFormat;
-    private byte size;
+    private long size;
     private int checkSum;
     private int currentChunk;
     private int totalChunk;
-    private LocalDateTime completedUploadDTM;
-
-    private LocalDateTime createdDTM;
-    private LocalDateTime updatedDTM;
 
 }

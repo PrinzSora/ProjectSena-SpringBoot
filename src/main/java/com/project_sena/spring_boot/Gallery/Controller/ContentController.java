@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 
@@ -21,6 +22,7 @@ public class ContentController {
     private final ContentRepo contentRepo;
     private final Map<String,ContentServiceInterface> contentServiceInterfaceMap;
     private final UtilService utilService;
+    private final LocalDateTime timeStamp = LocalDateTime.now();
 
     public ContentController(ContentRepo contentRepo,
                              Map<String,ContentServiceInterface> contentServiceInterfaceMap,
@@ -36,10 +38,6 @@ public class ContentController {
         ErrorResponses errorResponse = new ErrorResponses();
         try{
             mediaType = utilService.convertMediaTypeInHTTPHeader(mediaType);
-            System.out.println("mediaType:" +mediaType);
-            for(String key : this.contentServiceInterfaceMap.keySet()){
-                System.out.println("key:" +key);
-            }
             ContentServiceInterface contentServiceInterface = this.contentServiceInterfaceMap.get(mediaType);
             contentServiceInterface.getContent();
             response = new ResponseEntity<>(errorResponse, HttpStatusCode.valueOf(200));
@@ -59,7 +57,7 @@ public class ContentController {
         try{
             mediaType = utilService.convertMediaTypeInHTTPHeader(mediaType);
             ContentServiceInterface contentServiceInterface = this.contentServiceInterfaceMap.get(mediaType);
-            contentServiceInterface.addContent(bodyRequest);
+            contentServiceInterface.addContent(bodyRequest,timeStamp);
             response = new ResponseEntity<>(errorResponse, HttpStatusCode.valueOf(200));
         }catch (Exception e){
             errorResponse.setCode("5001");
