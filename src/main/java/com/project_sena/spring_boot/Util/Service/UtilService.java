@@ -84,7 +84,6 @@ public class UtilService {
         return result;
     }
 
-
     //todo Not Completed (unable to used)
     public CheckStringFormatCriteria IsStringFormatCorrectByCriteria(String string, String criteria){
         CheckStringFormatCriteria result = new CheckStringFormatCriteria();

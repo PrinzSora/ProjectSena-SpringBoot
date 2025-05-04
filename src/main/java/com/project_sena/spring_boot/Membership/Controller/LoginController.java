@@ -31,12 +31,17 @@ public class LoginController {
         ResponseEntity<LoginResponses> response;
         LoginResponses result = new LoginResponses();
         ErrorResponses errorResponses = new ErrorResponses();
-
         try{
             result = loginService.LoginWithEmail(request);
             errorResponses = null;
             result.setErrorResponses(errorResponses);
             response = new ResponseEntity<>(result, HttpStatusCode.valueOf(200));
+        }catch (IllegalArgumentException e){
+            errorResponses.setCode("4001");
+            errorResponses.setDetail(e.getMessage());
+            errorResponses.setMessages(e.getClass().getSimpleName());
+            result.setErrorResponses(errorResponses);
+            response = new ResponseEntity<>(result,HttpStatusCode.valueOf(401));
         }catch (Exception e){
             errorResponses.setCode("5001");
             errorResponses.setDetail(e.getMessage());

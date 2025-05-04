@@ -9,6 +9,7 @@ import com.project_sena.spring_boot.ProfileManagement.Model.Responses.SearchProf
 import com.project_sena.spring_boot.ProfileManagement.Repository.ProfileRepo;
 import com.project_sena.spring_boot.Util.Constance.Gender;
 import com.project_sena.spring_boot.Util.Constance.ProfileStatus;
+import com.project_sena.spring_boot.Util.Service.FileSystemService;
 import com.project_sena.spring_boot.Util.Service.ThreadLocalService;
 import com.project_sena.spring_boot.Util.Service.UtilService;
 import org.springframework.stereotype.Service;
@@ -25,11 +26,16 @@ public class ProfileServices {
     private final ProfileRepo profileRepo;
     private final UtilService utilService;
     private final ThreadLocalService threadLocalService;
+    private final FileSystemService fileSystemService;
 
-    public ProfileServices(ProfileRepo profileRepo, UtilService utilService, ThreadLocalService threadLocalService){
+    public ProfileServices(ProfileRepo profileRepo,
+                           UtilService utilService,
+                           ThreadLocalService threadLocalService,
+                           FileSystemService fileSystemService){
         this.profileRepo = profileRepo;
         this.utilService = utilService;
         this.threadLocalService = threadLocalService;
+        this.fileSystemService = fileSystemService;
     }
 
     @Transactional
@@ -72,6 +78,8 @@ public class ProfileServices {
         result.setBirthDate(request.getBirthDate());
         result.setUpdatedDTM(timeStamp);
         result.setCreatedDTM(timeStamp);
+        fileSystemService.makeDirectory(threadLocalService.getData().get("UID").toString());
+        fileSystemService.genarateDefaultDirectory(threadLocalService.getData().get("UID").toString());
         profileRepo.save(result);
     }
 

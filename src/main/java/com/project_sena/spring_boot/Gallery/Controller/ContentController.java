@@ -7,7 +7,6 @@ import com.project_sena.spring_boot.Gallery.Repository.ContentRepo;
 import com.project_sena.spring_boot.Util.Model.ErrorResponses;
 import com.project_sena.spring_boot.Util.Service.UtilService;
 import org.springframework.http.HttpStatusCode;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

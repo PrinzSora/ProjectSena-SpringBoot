@@ -8,6 +8,7 @@ import com.project_sena.spring_boot.Membership.Model.Request.RegisterByEmailRequ
 import com.project_sena.spring_boot.Membership.Model.Responses.RegisterByEmailResponses;
 import com.project_sena.spring_boot.Membership.Repository.TempRegisterRepo;
 import com.project_sena.spring_boot.Membership.Repository.UserProfileRepo;
+import com.project_sena.spring_boot.Util.Service.FileSystemService;
 import com.project_sena.spring_boot.Util.Service.MailService;
 import com.project_sena.spring_boot.Util.Service.UtilService;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,11 @@ public class RegisterService {
     private String OTP;
     private LocalDateTime OTPExpr;
 
-    public RegisterService(TempRegisterRepo tempRegisterRepo, UserProfileRepo userProfileRepo, UtilService utilService, MailService mailService) {
+    public RegisterService(TempRegisterRepo tempRegisterRepo,
+                           UserProfileRepo userProfileRepo,
+                           UtilService utilService,
+                           MailService mailService,
+                           FileSystemService fileSystemService) {
         this.tempRegisterRepo = tempRegisterRepo;
         this.userProfileRepo = userProfileRepo;
         this.utilService = utilService;
@@ -100,7 +105,8 @@ public class RegisterService {
 
     private UserProfileEntity createNewUserProfile(TempRegisterEntity tempRegister,LocalDateTime timeStamp) throws Exception{
         UserProfileEntity result = new UserProfileEntity();
-        result.setUID(UUID.randomUUID().toString());
+        String UID = UUID.randomUUID().toString();
+        result.setUID(UID);
         result.setUserName(tempRegister.getUserName());
         result.setUserPassword(tempRegister.getUserPassword());
         result.setStatus("ACTIVE");

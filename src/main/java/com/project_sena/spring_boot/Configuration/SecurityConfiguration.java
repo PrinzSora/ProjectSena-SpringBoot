@@ -1,4 +1,4 @@
-package com.project_sena.spring_boot;
+package com.project_sena.spring_boot.Configuration;
 
 
 import org.springframework.context.annotation.Bean;
